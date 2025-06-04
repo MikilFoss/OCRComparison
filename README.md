@@ -1,20 +1,54 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# OCR Comparison Tool
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+This tool compares the performance of two OCR methods for structured recipe reading:
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+1.  **Method 1**: OpenAI Vision (e.g., gpt-4-vision-preview) - Direct image-to-structured-data
+2.  **Method 2**: Azure OCR + OpenAI (e.g., gpt-4) - Two-step process: OCR extraction then structuring
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+## Setup
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+1.  **Install Dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+2.  **Configure API Keys**:
+    Edit the `.env` file and add your credentials:
+    ```
+    OPENAI_API_KEY="your_openai_api_key_here"
+    AZURE_AI_VISION_ENDPOINT="your_azure_endpoint_here"
+    AZURE_AI_VISION_KEY="your_azure_key_here"
+    ```
+
+3.  **Add Recipe Images**:
+    Place your recipe images (JPG/PNG) in the `ocr-examples/` directory (you may need to create this directory if it doesn't exist).
+
+## Usage
+
+1.  **Run the Comparison**:
+    To process all images in `ocr-examples/` and start the web server:
+    ```bash
+    python main.py
+    ```
+
+2.  **View Results**:
+    - The script will process all images and display console output.
+    - After processing, a web server will start.
+    - Open `http://127.0.0.1:5000/` in your browser to view the GUI.
+
+## GUI Features
+
+### Overview Page
+- Table showing all processed images
+- Latency comparison for both methods
+- Quick indication of whether differences were found
+- Links to detailed view for each image
+
+### Detail Page (per image)
+- Original recipe image display
+- Side-by-side JSON output comparison
+- Visual diff highlighting
+- Latency measurements for both methods
+
+## Notes
+- Press Ctrl+C in the terminal to stop the web server when done.

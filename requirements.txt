@@ -1,0 +1,6 @@
+openai
+azure-ai-vision-imageanalysis
+python-dotenv
+deepdiff
+pydantic
+Flask

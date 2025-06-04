@@ -1,0 +1,6 @@
+ocr-examples
+venv
+TODO
+results
+__pycache__/
+.env
